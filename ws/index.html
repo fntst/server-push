@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title> websocket </title>
+</head>
+<body>
+  <script type="text/javascript">
+    
+    let ws = new WebSocket("ws://localhost:3000")
+    ws.uid = Date.now(); // uid用来区分是哪一个用户 
+    
+    ws.onopen = function () {
+      console.log("ws opened")
+    }
+    ws.onclose = function () {
+      console.log("ws closed")
+    }
+    ws.onerror = function () {
+      console.error("ws error")
+    }
+    ws.onmessage = function (event) {
+      console.log(event.data)
+      let msg = 'hello from client'
+      console.log(msg);
+      ws.send( msg )
+    }
+  </script>
+</body>
+</html>
