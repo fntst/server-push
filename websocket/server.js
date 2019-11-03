@@ -1,7 +1,7 @@
 const http = require('http')
 const url = require('url')
-const WebSocket = require('ws')
 const path = require('path')
+const WebSocket = require('ws')
 const uuid = require('uuid')
 
 
@@ -28,6 +28,7 @@ wss.on('connection',(ws, req)=>{
   ws.on('error', function() {
     console.log(`client[${ws.id}] error`)
   })
+  
   
   console.log('current clients count: ', wss.clients.size)
   
