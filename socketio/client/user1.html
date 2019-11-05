@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title> socket.io </title>
+</head>
+<body>
+  
+  <button type="button" id="btn1">emit hello</button>
+  
+  
+  <script src="./socketio-client.js"></script>
+  <script type="text/javascript">
+    var socket = io('127.0.0.1:8000');
+    socket.on('connect', function(){
+      console.log('connect');
+      
+      socket.emit('login', 'user1' );
+    });
+    socket.on('event', function(data){
+      console.log('event:', data);
+    });
+    socket.on('disconnect', function(){
+      console.log('disconnect');
+      
+    });
+    
+    btn1.addEventListener("click",function(evt){
+      socket.emit('transmit message', 'hello'); 
+    })
+    socket.on('receive message', function(msg){
+      console.log('receive message:', msg);
+   });
+  </script>
+</body>
+</html>
