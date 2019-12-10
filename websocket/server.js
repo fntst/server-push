@@ -13,9 +13,11 @@ const wss = new WebSocket.Server( { server: server,  } )
 let targetClient = null; 
 
 wss.on('connection',(ws, req)=>{
-  // const location = url.parse(req.url, true)
+  const location = url.parse(req.url, true)
   // You might use location.query.access_token to authenticate or share sessions
   // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
+  console.log('req: ', req.headers.cookie );
+  
   ws.id = uuid.v4()
   
   ws.on('message', (message)=>{
